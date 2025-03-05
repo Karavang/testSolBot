@@ -7,15 +7,12 @@ const UserSchema = new mongoose.Schema({
 
 const WalletSchema = new mongoose.Schema({
   address: { type: String, required: true, unique: true },
-  owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  transactions: [
+  history: [
     {
-      type: { type: String },
-      amount: { type: Number },
-      timestamp: { type: Date, default: Date.now },
+      date: { type: Date },
+      balance: { type: String },
     },
   ],
-  lastCheckedBalance: { type: Number, default: 0 },
 });
 export const mongoConnect = async () => {
   try {

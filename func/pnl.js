@@ -9,8 +9,11 @@ export async function pnl(walletAddress) {
   if (history.length < 2) {
     return "Not enough data";
   }
+  console.log(history);
   const last = history[history.length - 1];
-  const prev = history[history.length - 2];
+  const prev = history[0];
+
   const pnl = Number(last.balance) - Number(prev.balance);
+  console.log(prev, last, pnl);
   return `${pnl}`;
 }

@@ -15,12 +15,12 @@ bot.onText(/\/start/, async (msg) => {
   bot.sendMessage(msg.chat.id, res);
 });
 bot.onText(/\/balance (.+)/, async (msg, match) => {
-  const res = await balanceFunc(match[match.length - 1]);
+  const res = await balanceFunc(match[1].replace(/\s+/g, ""));
   bot.sendMessage(msg.chat.id, `The balance of the wallet is ${res} SOL`);
 });
 
 bot.onText(/\/track (.+)/, async (msg, match) => {
-  const res = await trackFunc(msg.chat.username, match[match.length - 1]);
+  const res = await trackFunc(msg.chat.username, match[1].replace(/\s+/g, ""));
   bot.sendMessage(msg.chat.id, res);
 });
 
@@ -35,6 +35,6 @@ Wallet with the highest dynamics from the first search: ${res.maxPnlWallet.addre
 });
 
 bot.onText(/\/pnl (.+)/, async (msg, match) => {
-  const res = await pnl(match[match.length - 1]);
+  const res = await pnl(match[1].replace(/\s+/g, ""));
   bot.sendMessage(msg.chat.id, `${res} SOL`);
 });

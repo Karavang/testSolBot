@@ -19,6 +19,7 @@ export const trackFunc = async (user, address) => {
     });
     await newWallet.save();
   }
+
   const history = doc.history.map((entry) => ({
     date: new Date(entry.date).toLocaleString("en-GB", {
       day: "2-digit",

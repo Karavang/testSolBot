@@ -28,7 +28,6 @@ export const leaderboardFunc = async () => {
     (max, wallet) => (wallet.pnl > max.pnl ? wallet : max),
     pnlWallets[0],
   );
-  console.log(maxPnlWallet);
   const { address, historyLength } = mostLookupWallet[0];
   return {
     mostLookupWallet: { address, historyLength },

@@ -6,7 +6,7 @@ export const balanceFunc = async (wallet) => {
   try {
     const publicKey = new PublicKey(wallet);
     const balance = await connection.getBalance(publicKey);
-    return `${balance / 1000000000} SOL`;
+    return `${balance / 1000000000}`;
   } catch (error) {
     return "Invalid public key";
   }

@@ -3,6 +3,7 @@ import mongoose, { connect } from "mongoose";
 const UserSchema = new mongoose.Schema({
   name: { type: String, required: true },
   username: { type: String, required: true, unique: true },
+  wallets: { type: Array, required: true },
 });
 
 const WalletSchema = new mongoose.Schema({

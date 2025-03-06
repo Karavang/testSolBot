@@ -1,8 +1,13 @@
-import { Wallet } from "../mongo.js";
+import { User, Wallet } from "../mongo.js";
 import { balanceFunc } from "./balance.js";
 
-export const trackFunc = async (address) => {
+export const trackFunc = async (user, address) => {
   const balance = await balanceFunc(address);
+  await User.findOneAndUpdate(
+    { username: user },
+    { $addToSet: { wallets: address } },
+    { upsert: true },
+  ).exec();
   const doc = await Wallet.findOne({ address }).exec();
   if (doc) {
     doc.history.push({ date: new Date(), balance });
@@ -25,6 +30,6 @@ export const trackFunc = async (address) => {
     balance: entry.balance,
   }));
   return `History of ${address}:\n${history
-    .map((entry) => `${entry.date} - ${entry.balance}`)
+    .map((entry) => `${entry.date} - ${entry.balance} SOL`)
     .join("\n")}`;
 };
